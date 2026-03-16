@@ -13,16 +13,16 @@ A voice-first AI agent that manages Google Calendar through natural conversation
 ```
 User speaks
   → ElevenLabs STT (speech-to-text)
-  → GPT-4o (hosted by ElevenLabs, not a custom server)
+  → Claude Sonnet 4.5 (hosted by ElevenLabs, not a custom server)
   → Tool call decision
   → Webhook to our Next.js API (Cloud Run)
   → Google Calendar API
-  → Result back to GPT-4o
+  → Result back to Claude Sonnet 4.5
   → ElevenLabs TTS (text-to-speech)
 → User hears the response
 ```
 
-The user speaks naturally. ElevenLabs handles speech recognition and synthesis. GPT-4o decides what to do and calls our backend via webhooks when it needs calendar data. Our backend is purely a calendar operations layer — no LLM hosting, no inference, no prompt routing.
+The user speaks naturally. ElevenLabs handles speech recognition and synthesis. Claude Sonnet 4.5 decides what to do and calls our backend via webhooks when it needs calendar data. Our backend is purely a calendar operations layer — no LLM hosting, no inference, no prompt routing.
 
 ---
 
@@ -30,11 +30,11 @@ The user speaks naturally. ElevenLabs handles speech recognition and synthesis. 
 
 ### Why ElevenLabs Conversational AI as the voice layer?
 
-ElevenLabs provides an end-to-end voice pipeline: STT, turn-taking, and TTS in one service. The key advantage is that it **hosts GPT-4o directly** and calls our backend via webhooks (server tools) only when tool execution is needed. This eliminates an entire custom LLM server from the architecture.
+ElevenLabs provides an end-to-end voice pipeline: STT, turn-taking, and TTS in one service. The key advantage is that it **hosts Claude Sonnet 4.5 directly** and calls our backend via webhooks (server tools) only when tool execution is needed. This eliminates an entire custom LLM server from the architecture.
 
 Alternatives considered:
 - **OpenAI Realtime API**: Higher latency (~200ms TTS vs ElevenLabs' ~75ms), lower function calling accuracy (66.5% vs 80%), and locks you into OpenAI's voice model.
-- **Custom STT + LLM + TTS pipeline** (e.g., Whisper + GPT-4o + Play.ht): More control but significantly more infrastructure, higher latency from multiple hops, and no built-in turn-taking.
+- **Custom STT + LLM + TTS pipeline** (e.g., Whisper + Claude/GPT + Play.ht): More control but significantly more infrastructure, higher latency from multiple hops, and no built-in turn-taking.
 
 ElevenLabs gave us the best voice quality with the least infrastructure.
 
@@ -64,7 +64,7 @@ Voice agents have different constraints than chat. The system prompt enforces:
 | Layer | Technology | Why |
 |-------|-----------|-----|
 | Voice | ElevenLabs Conversational AI | Best-in-class STT + TTS with hosted LLM |
-| LLM | GPT-4o (via ElevenLabs) | Strong function calling, fast reasoning |
+| LLM | Claude Sonnet 4.5 (via ElevenLabs) | Strong function calling, fast reasoning |
 | Backend | Next.js 16 API routes (TypeScript) | Single deployable, great DX |
 | Frontend | React 19 + Tailwind CSS v4 | Week-view calendar + voice UI |
 | Calendar | Google Calendar API | Domain-wide delegation + OAuth |
