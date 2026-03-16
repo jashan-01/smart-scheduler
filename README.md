@@ -2,9 +2,9 @@
 
 A voice-first AI agent that manages Google Calendar through natural conversation. Talk to schedule, reschedule, cancel, and analyze meetings — including multi-participant coordination across an organization.
 
-**Demo video:** [Link to demo video]
+**Demo video:** [Watch on Google Drive](https://drive.google.com/file/d/1eGj28IGMPbh2mUhLgv4_Xkp_IEVMGE_n/view?usp=sharing)
 
-**Live deployment:** [Link to deployed app]
+**Live deployment:** [smart-scheduler-377865870788.us-central1.run.app](https://smart-scheduler-377865870788.us-central1.run.app/)
 
 ---
 
