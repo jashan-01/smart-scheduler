@@ -1,0 +1,15 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '--build-arg=NEXT_PUBLIC_USER_1_EMAIL=jashan@conci.in'
+      - '--build-arg=NEXT_PUBLIC_USER_1_NAME=Jashan'
+      - '--build-arg=NEXT_PUBLIC_USER_2_EMAIL=deepak@conci.in'
+      - '--build-arg=NEXT_PUBLIC_USER_2_NAME=Deepak'
+      - '--build-arg=NEXT_PUBLIC_USER_3_EMAIL=monica@conci.in'
+      - '--build-arg=NEXT_PUBLIC_USER_3_NAME=Monica'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/smart-scheduler/app:latest'
+      - '.'
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/smart-scheduler/app:latest'
