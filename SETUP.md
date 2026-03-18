@@ -76,7 +76,7 @@ gcloud iam service-accounts create smart-scheduler \
 ### 2.4 Download Service Account Key
 ```bash
 gcloud iam service-accounts keys create service-account-key.json \
-  --iam-account=smart-scheduler@YOUR_PROJECT_ID.iam.gserviceaccount.com
+  --iam-account=smart-scheduler@smart-scheduler-f76af.iam.gserviceaccount.com
 ```
 
 ### 2.5 Enable Domain-Wide Delegation
